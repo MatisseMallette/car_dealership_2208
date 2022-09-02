@@ -58,4 +58,24 @@ RSpec.describe Dealership do
     expect(new_dealership_details["total_value"]).to eq(20001)
     expect(new_dealership_details["address"]).to eq("Sparta")
   end
+
+  it 'can provide a list of cars sorted by price' do
+    new_dealership = Dealership.new("Bob's Used Autos", "Sparta")
+    new_dealership.add_car(Car.new("Tesla Tesla", 1000, 10))
+    new_dealership.add_car(Car.new("Nissan Juke", 100, 10))
+    new_dealership.add_car(Car.new("Tesla Cybertruck", 500, 10))
+    expect(new_dealership.cars_sorted_by_price[0].model).to eq("Juke")
+    expect(new_dealership.cars_sorted_by_price[1].model).to eq("Cybertruck")
+    expect(new_dealership.cars_sorted_by_price[2].model).to eq("Tesla")
+  end
+
+  it 'can return a hash of its entire inventory sorted by the brand(aka make)' do
+    new_dealership = Dealership.new("Bob's Used Autos", "Sparta")
+    new_dealership.add_car(Car.new("Tesla Tesla", 1000, 10))
+    new_dealership.add_car(Car.new("Nissan Juke", 100, 10))
+    new_dealership.add_car(Car.new("Tesla Cybertruck", 500, 10))
+    expect(new_dealership.inventory_hash["Tesla"].length).to eq(2)
+    expect(new_dealership.inventory_hash["Nissan"].length).to eq(1)
+    puts new_dealership.inventory_hash
+  end
 end

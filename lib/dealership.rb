@@ -46,4 +46,18 @@ class Dealership
   def details
     details = {"address"=>@address, "total_value"=>self.total_value}
   end
+
+  def cars_sorted_by_price
+    @inventory.sort_by do |car| 
+      car.total_cost
+    end
+  end
+
+  def inventory_hash 
+    hash = {}
+    @inventory.each do |car|
+      hash[car.make] = self.cars_by_make(car.make)
+    end
+    return hash
+  end
 end
