@@ -23,4 +23,16 @@ RSpec.describe Dealership do
     @dealership.add_car(new_car2)
     expect(@dealership.inventory_count).to eq(2)
   end
+
+  it 'can be asked if it has an inventory' do
+    new_dealership = Dealership.new("Shmacme Shmauto", "321 Niam Drive")
+    expect(new_dealership.has_inventory?).to eq(false)
+    new_car = Car.new("Tesla Cybertruck", 9001, 60)
+    new_dealership.add_car(new_car)
+    expect(new_dealership.has_inventory?).to eq(true)
+  end
+
+  it 'can provide list of cars based on make' do
+    
+  end
 end
