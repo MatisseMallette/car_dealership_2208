@@ -47,6 +47,15 @@ RSpec.describe Dealership do
     expect(new_dealership.cars_by_make("Tesla")[0].model).to eq("Tesla")
     expect(new_dealership.cars_by_make("Tesla")[1].model).to eq("Cybertruck")
     expect(new_dealership.cars_by_make("Tesla").length).to eq(2)
-    
+  end
+
+  it 'can provide details' do
+    new_dealership = Dealership.new("Bob's Used Autos", "Sparta")
+    new_dealership.add_car(Car.new("Tesla Tesla", 1000, 10))
+    new_dealership.add_car(Car.new("Tesla Cybertruck", 1000, 10))
+    new_dealership.add_car(Car.new("Nissan Juke", 1, 1))
+    new_dealership_details = new_dealership.details
+    expect(new_dealership_details["total_value"]).to eq(20001)
+    expect(new_dealership_details["address"]).to eq("Sparta")
   end
 end

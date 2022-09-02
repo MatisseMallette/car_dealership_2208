@@ -2,6 +2,7 @@ class Dealership
   attr_reader :inventory
   def initialize(name, address)
     @inventory = []
+    @address = address
   end
 
   def inventory_count 
@@ -20,12 +21,16 @@ class Dealership
     end
   end
 
-  def average_price_of_car 
+  def total_value 
     total = 0
     @inventory.each do |car|
-      total += (car.total_cost)
+      total += car.total_cost
     end
-    return total / self.inventory_count
+    return total
+  end
+
+  def average_price_of_car 
+    self.total_value / self.inventory_count
   end
 
   def cars_by_make(make)
@@ -36,5 +41,9 @@ class Dealership
       end
     end
     return selected_cars
+  end
+
+  def details
+    details = {"address"=>@address, "total_value"=>self.total_value}
   end
 end
