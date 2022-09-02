@@ -52,4 +52,12 @@ class Dealership
       car.total_cost
     end
   end
+
+  def inventory_hash 
+    hash = {}
+    @inventory.each do |car|
+      hash[car.make] = self.cars_by_make(car.make)
+    end
+    return hash
+  end
 end
