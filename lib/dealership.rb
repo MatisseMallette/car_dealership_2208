@@ -46,4 +46,10 @@ class Dealership
   def details
     details = {"address"=>@address, "total_value"=>self.total_value}
   end
+
+  def cars_sorted_by_price
+    @inventory.sort_by do |car| 
+      car.total_cost
+    end
+  end
 end
