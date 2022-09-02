@@ -8,5 +8,7 @@ class Dealership
     return @inventory.length
   end
 
-  
+  def add_car(car)
+    @inventory << car
+  end
 end
